@@ -7,7 +7,13 @@ import numpy as np
 from markov import MarkovChain
 
 
-class RBFMCDriftDetector:
+class RBFDriftDetectorResponse:
+    def __init__(self, activated_center=None, concept_drift=False):
+        self.activated_center = activated_center
+        self.concept_drift = concept_drift
+
+
+class RBFDriftDetector:
     """Radial Basis Function with Markov Chain detector."""
 
     def __init__(self, sigma=0.1, threshold=0.9):
@@ -22,6 +28,10 @@ class RBFMCDriftDetector:
         print(f"input_data: {input_data}")
         print(f"centers: {self.centers}")
         print(self.actual_center)
+
+        response = RBFDriftDetectorResponse(
+            activated_center=input_data, concept_drift=False
+        )
 
         activation_threshold = self.threshold
         activated_center = None
@@ -43,6 +53,8 @@ class RBFMCDriftDetector:
                 activated_center = center
                 activation_threshold = activation
 
+                response.activated_center = activated_center
+
         # no center activates, so we have a new center
         if activated_center is None:
             self.centers.append(input_data)
@@ -55,10 +67,9 @@ class RBFMCDriftDetector:
         # if actual_center is not the activated_center, drift, drift!
         if self.actual_center != activated_center:
             self.actual_center = activated_center
+            response.concept_drift = True
 
-            return True
-
-        return False
+        return response
 
     def is_center(self, value):
         return value in self.centers
