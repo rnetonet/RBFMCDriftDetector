@@ -1,0 +1,9 @@
+digraph n0 {
+"Event [1.2]" -> "Event [1.6]"[label="\"1,0000\""]
+"Event [1.6]" -> "Event [1.2]"[label="\"0,3333\""]
+"Event [1.6]" -> "Event [4.0]"[label="\"0,3333\""]
+"Event [1.6]" -> "Event [1.6]"[label="\"0,3333\""]
+"Event [4.0]" -> "Event [4.0]"[label="\"0,5000\""]
+"Event [4.0]" -> "Event [5.6]"[label="\"0,5000\""]
+"Event [5.6]" -> "Event [5.6]"[label="\"1,0000\""]
+}
