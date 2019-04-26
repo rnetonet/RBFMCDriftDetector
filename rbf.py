@@ -8,9 +8,10 @@ from markov import MarkovChain
 
 
 class RBFDriftDetectorResponse:
-    def __init__(self, activated_center=None, concept_drift=False):
+    def __init__(self, activated_center=None, activation=0.0, concept_drift=False):
         self.activated_center = activated_center
         self.concept_drift = concept_drift
+        self.activation = activation
 
 
 class RBFDriftDetector:
@@ -54,6 +55,7 @@ class RBFDriftDetector:
                 activation_threshold = activation
 
                 response.activated_center = activated_center
+                response.activation = activation
 
         # no center activates, so we have a new center
         if activated_center is None:

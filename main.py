@@ -73,7 +73,7 @@ for moment, value in zip(moments, values):
 
     # Labels
     plt.gca().set_title(
-        f"instant:{subplot_id-1} | value:{value:.2f} | center:{drift_detector_response.activated_center}"
+        f"T{subplot_id-1} | V={value:.2f} | C={drift_detector_response.activated_center} | A={drift_detector_response.activation:.2f}"
     )
     plt.gca().set_xticklabels([])
 
