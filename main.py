@@ -7,7 +7,7 @@ from rbf import RBFDriftDetector
 
 # Matplotlib
 fig = plt.figure()
-font = {"family": "monospace", "weight": "regular", "size": 6}
+font = {"family": "monospace", "weight": "regular", "size": 7.5}
 
 matplotlib.rc("font", **font)
 
@@ -37,6 +37,10 @@ for moment, value in zip(moments, values):
     # Select subplot
     plt.subplot(subplots_x, subplots_y, subplot_id)
     subplot_id += 1
+
+    # Set limits
+    plt.gca().set_xlim(left=-1, right=len(moments))
+    plt.gca().set_ylim(top=1.00)
 
     # If drift detected, save to plot all drift lines in the current and next subplots
     drift_detector_response = drift_detector.handle(value)
