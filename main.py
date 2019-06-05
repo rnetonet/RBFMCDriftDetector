@@ -1,9 +1,12 @@
 import matplotlib
-from matplotlib import colors as mcolors
-
 import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib import colors as mcolors
+from scipy.io import arff
 
 from rbf import RBFDriftDetector
+from scipy.io import arff
+import pandas as pd
 
 # Matplotlib
 fig = plt.figure()
@@ -12,8 +15,14 @@ font = {"family": "monospace", "weight": "regular", "size": 7.5}
 matplotlib.rc("font", **font)
 
 # Dataset
-moments = list(range(10))
-values = [0.11, 0.12, 0.13, 0.34, 0.45, 0.47, 0.33, 0.25, 0.14, 0.10]
+data = arff.loadarff("stream.arff")
+df = pd.DataFrame(data[0])
+
+values = df["input"].to_list()
+moments = range(len(values))
+
+# moments = list(range(10))
+# values = [0.11, 0.12, 0.13, 0.34, 0.45, 0.47, 0.33, 0.25, 0.14, 0.10]
 
 # Setup drift detector
 drift_detector = RBFDriftDetector(sigma=0.2, threshold=0.6)
