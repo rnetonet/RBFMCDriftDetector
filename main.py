@@ -45,7 +45,6 @@ map_data_activated_center = {}
 for moment, value in zip(moments, values):
     # Select subplot
     plt.subplot(subplots_x, subplots_y, subplot_id)
-    subplot_id += 1
 
     # Set limits
     plt.gca().set_xlim(left=-1, right=len(moments))
@@ -89,5 +88,6 @@ for moment, value in zip(moments, values):
         f"T{subplot_id-1} | V={value:.2f} | C={drift_detector_response.activated_center} | A={drift_detector_response.activation:.2f}"
     )
     plt.gca().set_xticklabels([])
+    subplot_id += 1
 
 plt.show()
